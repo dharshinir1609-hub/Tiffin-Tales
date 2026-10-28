@@ -1,0 +1,259 @@
+/* ---------- 1. Design tokens (change these to re-theme the whole site) ---------- */
+:root {
+  --bg: #fff8f1;
+  --card: #ffffff;
+  --text: #2d1e12;
+  --muted: #8a7462;
+  --line: #f0e2d3;
+  --brand: #e8590c;
+  --brand-dark: #c2410c;
+  --green: #2f9e44;
+  --red: #e03131;
+  --radius: 16px;
+  --shadow: 0 10px 30px -18px rgba(120, 60, 10, 0.45);
+}
+
+/* ---------- 2. Base ---------- */
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+h1, h2, h3 { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, a:focus-visible {
+  outline: 3px solid #2c78b7;
+  outline-offset: 2px;
+}
+
+/* ---------- 3. Header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 24px;
+  background: rgba(255, 248, 241, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 800;
+}
+.brand h1 { font-size: 22px; }
+.tagline { margin: 0; font-size: 13px; color: var(--muted); }
+.cart-link {
+  text-decoration: none;
+  color: #fff;
+  background: var(--text);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+.cart-link span {
+  background: var(--brand);
+  border-radius: 999px;
+  padding: 0 8px;
+  margin-left: 4px;
+}
+
+/* ---------- 4. Hero ---------- */
+.hero {
+  margin: 20px 24px;
+  padding: 28px;
+  border-radius: 24px;
+  color: #fff;
+  background: linear-gradient(120deg, #e8590c, #f08c00);
+}
+.hero h2 { font-size: clamp(26px, 4vw, 38px); }
+.hero p { margin: 6px 0 0; opacity: 0.95; }
+
+/* ---------- 5. Layout ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 24px;
+  align-items: start;
+  padding: 0 24px 40px;
+}
+
+/* ---------- 6. Toolbar and chips ---------- */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; }
+.toolbar input[type="search"] { flex: 1; min-width: 200px; }
+.toolbar input, .toolbar select, .coupon-form input, .checkout-form input, .checkout-form textarea {
+  padding: 10px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+.toolbar input:focus, .toolbar select:focus, .checkout-form input:focus, .checkout-form textarea:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+.veg-toggle { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+.chip {
+  border: 1.5px solid var(--line);
+  background: var(--card);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-weight: 600;
+}
+.chip.active { background: var(--text); border-color: var(--text); color: #fff; }
+.result-info { color: var(--muted); font-size: 14px; }
+
+/* ---------- 7. Menu cards ---------- */
+.menu-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.dish {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+.dish:hover { transform: translateY(-3px); }
+.dish.sold-out { opacity: 0.55; }
+.dish-top { display: flex; justify-content: space-between; align-items: center; min-height: 22px; }
+.diet { width: 16px; height: 16px; border: 2px solid; border-radius: 3px; display: grid; place-items: center; }
+.diet::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.diet.veg { color: var(--green); }
+.diet.nonveg { color: var(--red); }
+.badge { font-size: 11px; font-weight: 700; color: var(--brand-dark); background: #fff0e0; padding: 2px 8px; border-radius: 999px; }
+.dish h3 { font-size: 17px; }
+.meta { margin: 0; font-size: 13px; color: var(--muted); }
+.spice { color: var(--red); letter-spacing: 2px; }
+.dish-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
+.price { font-weight: 800; font-size: 18px; }
+.add-btn {
+  border: 0;
+  background: var(--brand);
+  color: #fff;
+  font-weight: 700;
+  padding: 7px 18px;
+  border-radius: 999px;
+}
+.add-btn:hover { background: var(--brand-dark); }
+.add-btn:disabled { background: #d9cfc6; cursor: not-allowed; }
+.empty { grid-column: 1 / -1; list-style: none; text-align: center; color: var(--muted); padding: 24px; }
+
+/* ---------- 8. Cart ---------- */
+.cart {
+  position: sticky;
+  top: 90px;
+  background: var(--card);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.cart h2 { font-size: 20px; margin-bottom: 8px; }
+.cart-list { list-style: none; margin: 0 0 12px; padding: 0; }
+.cart-list li {
+  display: grid;
+  grid-template-columns: 1fr auto 70px;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.cart-list li.empty { display: block; border: 0; padding: 10px 0; }
+.ci-name { font-weight: 600; font-size: 14px; }
+.ci-price { text-align: right; font-weight: 700; }
+.qty { display: flex; align-items: center; gap: 8px; }
+.qty button {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--brand);
+  background: #fff;
+  color: var(--brand);
+  font-weight: 800;
+  line-height: 1;
+}
+.coupon-form { display: flex; gap: 6px; }
+.coupon-form input { flex: 1; min-width: 0; text-transform: uppercase; }
+.coupon-form button { border: 0; background: var(--text); color: #fff; border-radius: 12px; padding: 0 14px; font-weight: 700; }
+.coupon-msg { min-height: 1.4em; font-size: 13px; color: var(--red); margin: 6px 0; }
+.coupon-msg.ok { color: var(--green); }
+.bill { display: grid; grid-template-columns: 1fr auto; gap: 4px; margin: 0 0 16px; font-size: 14px; }
+.bill dd { margin: 0; text-align: right; }
+.bill .total { font-size: 18px; font-weight: 800; padding-top: 6px; border-top: 1.5px solid var(--line); }
+
+/* ---------- 9. Checkout form ---------- */
+.checkout-form { display: grid; gap: 4px; }
+.checkout-form h3 { font-size: 16px; margin-bottom: 4px; }
+.checkout-form label { font-size: 13px; font-weight: 700; margin-top: 4px; }
+.checkout-form .invalid { border-color: var(--red); }
+.error { color: var(--red); font-size: 12px; min-height: 1em; }
+.place-btn {
+  margin-top: 10px;
+  border: 0;
+  background: var(--green);
+  color: #fff;
+  font-weight: 800;
+  padding: 12px;
+  border-radius: 12px;
+}
+.place-btn:disabled { background: #c9d6cb; cursor: not-allowed; }
+
+/* ---------- 10. Confirmation popup ---------- */
+.confirmation {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  background: rgba(45, 30, 18, 0.45);
+  padding: 20px;
+}
+.confirm-box {
+  background: #fff;
+  border-radius: 24px;
+  padding: 28px;
+  max-width: 420px;
+  text-align: center;
+  animation: pop 0.35s ease-out;
+}
+.confirm-box h2 { color: var(--green); }
+.confirm-box .order-id { font-family: monospace; font-size: 18px; background: var(--bg); padding: 6px 12px; border-radius: 8px; display: inline-block; }
+.confirm-box button { border: 0; background: var(--brand); color: #fff; font-weight: 700; padding: 10px 20px; border-radius: 999px; margin-top: 8px; }
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.site-footer { text-align: center; color: var(--muted); font-size: 13px; padding: 24px; }
+
+/* ---------- 11. Mobile ---------- */
+@media (max-width: 860px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .cart { position: static; }
+  .site-header, .layout { padding-left: 16px; padding-right: 16px; }
+  .hero { margin: 16px; padding: 22px; }
+  .tagline { display: none; }
+}

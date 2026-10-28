@@ -1,0 +1,8 @@
+{
+  "name": "tiffin-tales",
+  "version": "1.0.0",
+  "description": "Online food-ordering website for a South Indian cafe (HTML, CSS and vanilla JavaScript).",
+  "type": "module",
+  "private": true,
+  "license": "MIT"
+}
